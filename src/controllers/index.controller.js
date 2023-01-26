@@ -3,7 +3,7 @@ const pool=new Pool({
     host:'localhost',
     user:'admin',
     password:'123',
-    database:'pi',
+    database:'Citas-Medicas',
     port:5432,
 })
 const getDisability = async(req, res) => {
