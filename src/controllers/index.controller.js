@@ -17,13 +17,13 @@ const getDisabilityById = async(req, res) => {
     res.json(response.rows);
 };
 const createDisability = async(req, res) => {
-    const {id_discapacidades, nombre_d,descripcion_d}=req.body;
-   const response= await pool.query('INSERT INTO discapacidades (id_discapacidades, nombre_d,descripcion_d) VALUES($1,$2,$3)',[id_discapacidades, nombre_d, descripcion_d]);
+    const { nombre_discapacidad,descripcion_discapacidad}=req.body;
+   const response= await pool.query('INSERT INTO discapacidades (nombre_discapacidad,descripcion_discapacidad) VALUES($1,$2)',[ nombre_discapacidad, descripcion_discapacidad]);
    console.log(response);
     res.json({
         message:'¡La discapacidad se ha creado satisfactoriamente!',
         body:{
-            discapacidades: {id_discapacidades,nombre_d, discapacidad_d}
+            discapacidades: {nombre_discapacidad, descripcion_discapacidad}
         }
     })
 };
