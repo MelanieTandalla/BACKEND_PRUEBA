@@ -98,6 +98,85 @@ const deleteDoctor = async(req, res) => {
     const response = await pool.query('DELETE FROM doctor WHERE id_doctor = $1',[id]);
     res.json(`Doctor ${id} eliminado correctamente`);
 };
+//Pacientes metodos
+
+const getPatient = async(req, res) => {
+    const response=await pool.query('SELECT * FROM pacientes');
+    console.log(response.rows);
+    res.status(200).json(response.rows);
+};
+const getPatientById = async(req, res) => {
+    const id=req.params.id;
+    const response =await pool.query('SELECT * FROM pacientes WHERE id_paciente = $1',[id]);
+    res.json(response.rows);
+};
+const createPatient = async(req, res) => {
+    const {
+        nombre_paciente,
+        apellido_paciente, 
+        direccion_paciente,
+        telefono_paciente, 
+        email_paciente,
+        tlf_familiar_paciente,
+        fecha_nacimiento_paciente,
+        genero_paciente,
+        id_alergias,
+        id_discapacidades
+    }=req.body;
+   const response= await pool.query('INSERT INTO pacientes (nombre_paciente,apellido_paciente, direccion_paciente,telefono_paciente, email_paciente,tlf_familiar_paciente,fecha_nacimiento_paciente,genero_paciente,id_alergias,id_discapacidades) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)',[nombre_paciente,
+    apellido_paciente, 
+    direccion_paciente,
+    telefono_paciente, 
+    email_paciente,
+    tlf_familiar_paciente,
+    fecha_nacimiento_paciente,
+    genero_paciente,
+    id_alergias,
+    id_discapacidades]);
+   console.log(response);
+    res.json({
+        message:'¡El paciente se ha creado satisfactoriamente!',
+        body:{
+            pacientes: {nombre_paciente,
+                apellido_paciente, 
+                direccion_paciente,
+                telefono_paciente, 
+                email_paciente,
+                tlf_familiar_paciente,
+                fecha_nacimiento_paciente,
+                genero_paciente,
+                id_alergias,
+                id_discapacidades}
+        }
+    })
+};
+/*const updateDoctor = async(req, res) => {
+    const id=req.params.id;
+    const { 
+        nombre_d,
+        apellidos_d, 
+        email,
+        dirreccion_d, 
+        contraseña_d,
+        id_especialidades
+    }=req.body;
+    const response = await pool.query('UPDATE doctor SET nombre_d = $1, apellidos_d = $2, email=$3,dirreccion_d = $4, contraseña_d = $5,id_especialidades=$6 WHERE id_doctor = $7',[
+        nombre_d,
+        apellidos_d, 
+        email,
+        dirreccion_d, 
+        contraseña_d,
+        id_especialidades,
+        id
+    ]) 
+    console.log(response);
+    res.json('Doctor Actualizado');
+};
+const deleteDoctor = async(req, res) => {
+    const id=req.params.id;
+    const response = await pool.query('DELETE FROM doctor WHERE id_doctor = $1',[id]);
+    res.json(`Doctor ${id} eliminado correctamente`);
+};*/
 
 module.exports = {
     getDisability,
@@ -109,5 +188,8 @@ module.exports = {
     updateDisability,
     updateDoctor,
     deleteDisability,
-    deleteDoctor
+    deleteDoctor,
+    getPatient,
+    getPatientById,
+    createPatient
 }
