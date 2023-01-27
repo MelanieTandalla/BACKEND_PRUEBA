@@ -150,33 +150,85 @@ const createPatient = async(req, res) => {
         }
     })
 };
-/*const updateDoctor = async(req, res) => {
+const updatePatient = async(req, res) => {
     const id=req.params.id;
     const { 
-        nombre_d,
-        apellidos_d, 
-        email,
-        dirreccion_d, 
-        contraseña_d,
-        id_especialidades
+        nombre_paciente,
+        apellido_paciente, 
+        direccion_paciente,
+        telefono_paciente, 
+        email_paciente,
+        tlf_familiar_paciente,
+        fecha_nacimiento_paciente,
+        genero_paciente,
+        id_alergias,
+        id_discapacidades
     }=req.body;
-    const response = await pool.query('UPDATE doctor SET nombre_d = $1, apellidos_d = $2, email=$3,dirreccion_d = $4, contraseña_d = $5,id_especialidades=$6 WHERE id_doctor = $7',[
-        nombre_d,
-        apellidos_d, 
-        email,
-        dirreccion_d, 
-        contraseña_d,
-        id_especialidades,
+    const response = await pool.query('UPDATE pacientes SET  nombre_paciente= $1, apellido_paciente = $2, direccion_paciente=$3, telefono_paciente = $4, email_paciente = $5, tlf_familiar_paciente=$6, fecha_nacimiento_paciente=$7, genero_paciente =$8, id_alergias= $9, id_discapacidades= $10  WHERE id_paciente = $11',[
+       nombre_paciente,
+        apellido_paciente, 
+        direccion_paciente,
+        telefono_paciente, 
+        email_paciente,
+        tlf_familiar_paciente,
+        fecha_nacimiento_paciente,
+        genero_paciente,
+        id_alergias,
+        id_discapacidades,
         id
     ]) 
     console.log(response);
-    res.json('Doctor Actualizado');
+    res.json('Paciente Actualizado');
 };
-const deleteDoctor = async(req, res) => {
+const deletePatient = async(req, res) => {
     const id=req.params.id;
-    const response = await pool.query('DELETE FROM doctor WHERE id_doctor = $1',[id]);
-    res.json(`Doctor ${id} eliminado correctamente`);
-};*/
+    const response = await pool.query('DELETE FROM pacientes WHERE id_paciente = $1',[id]);
+    res.json(`Paciente con id: ${id} eliminado correctamente`);
+};
+
+//Alergias metodos
+
+const getAllergies = async(req, res) => {
+    const response=await pool.query('SELECT * FROM alergias');
+    console.log(response.rows);
+    res.status(200).json(response.rows);
+};
+const getAllergiesById = async(req, res) => {
+    const id=req.params.id;
+    const response =await pool.query('SELECT * FROM alergias WHERE id_alergia = $1',[id]);
+    res.json(response.rows);
+};
+
+const createAllergies= async(req, res) => {
+    const { nombre_alergia,descripcion_alergia}=req.body;
+   const response= await pool.query('INSERT INTO alergias (nombre_alergia,descripcion_alergia) VALUES($1,$2)',[ nombre_alergia, descripcion_alergia]);
+   console.log(response);
+    res.json({
+        message:'¡La alergia se ha creado satisfactoriamente!',
+        body:{
+            alergias: {nombre_alergia, descripcion_alergia}
+        }
+    })
+};
+const updateAllergies = async(req, res) => {
+    const id=req.params.id;
+    const { nombre_alergia, descripcion_alergia}=req.body;
+    const response = await pool.query('UPDATE alergias SET nombre_alergia = $1, descripcion_alergia = $2 WHERE id_alergia = $3',[
+        nombre_alergia,
+        descripcion_alergia,
+        id
+    ]) 
+    console.log(response);
+    res.json('Alergia Actualizada');
+};
+
+const deleteAllergies = async(req, res) => {
+    const id=req.params.id;
+    const response = await pool.query('DELETE FROM alergias WHERE id_alergia = $1',[id]);
+    res.json(`La alergia con id: ${id} eliminada correctamente`);
+};
+
+
 
 module.exports = {
     getDisability,
@@ -191,5 +243,12 @@ module.exports = {
     deleteDoctor,
     getPatient,
     getPatientById,
-    createPatient
+    createPatient,
+    updatePatient,
+    deletePatient,
+    getAllergies,
+    getAllergiesById,
+    createAllergies,
+    updateAllergies,
+    deleteAllergies,
 }
