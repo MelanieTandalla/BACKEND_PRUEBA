@@ -1,28 +1,14 @@
 const {Router} = require('express');
 const router = Router();
 
-const {getDisability,
-    getDisabilityById,
-     createDisability, 
-     deleteDisability,
-     updateDisability,
-     getDoctors,
-     getDoctorsById,
-     createDoctor,
-     updateDoctor,
-     deleteDoctor,
-     getPatient,
-     getPatientById,
-     createPatient,
-     updatePatient,
-     deletePatient,
-     getAllergies,
-     getAllergiesById,
-     createAllergies,
-     updateAllergies,
-     deleteAllergies,
+const { getDisability,getDisabilityById,createDisability, deleteDisability,
+updateDisability} = require('../controllers/disability.controller');
 
-} = require('../controllers/index.controller')
+const {getDoctors, getDoctorsById, deleteDoctor, createDoctor, updateDoctor}= require('../controllers/doctor.controller');
+
+const {getPatient, getPatientById, deletePatient, createPatient, updatePatient}= require('../controllers/patient.controller');
+
+const {getAllergies,getAllergiesById,createAllergies,updateAllergies,deleteAllergies}= require('../controllers/allergies.controller');
 
 //Discapacidades listar
 router.get('/api/disabilities', getDisability);
@@ -38,7 +24,7 @@ router.get('/api/patients/:id', getPatientById);
 
 //Alergias listar
 router.get('/api/allergies',getAllergies);
-router.get('/api/allergies/id',getAllergiesById)
+router.get('/api/allergies/:id',getAllergiesById)
 
 //Crear
 router.post('/api/disabilities', createDisability);
