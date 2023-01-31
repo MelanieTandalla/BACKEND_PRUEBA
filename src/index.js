@@ -8,4 +8,4 @@ app.use(express.urlencoded({extended: true}));
 app.use(require('./routes/index'))
 //Inicio del servidor
 app.listen(3000);
-console.log('¡BACKEND-SALUD CONECTADO EN EL PUERTO 3000!')
+console.log('¡BACKEND-SALUD CONECTADO EN EL PUERTO 3000!');
