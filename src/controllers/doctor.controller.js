@@ -17,19 +17,20 @@ const getDoctorsById = async(req, res) => {
     res.json(response.rows);
 };
 const createDoctor = async(req, res) => {
-    const {nombre_d,
+    const {
+        nombre_d,
         apellidos_d, 
         email,
         dirreccion_d, 
-        contraseña_d,
+        password_d,
         id_especialidades
     }=req.body;
-   const response= await pool.query('INSERT INTO doctor (nombre_d,apellidos_d, email,dirreccion_d, contraseña_d,id_especialidades ) VALUES($1,$2,$3,$4,$5,$6)',[nombre_d,apellidos_d, email,dirreccion_d, contraseña_d,id_especialidades]);
+   const response= await pool.query('INSERT INTO doctor (nombre_d,apellidos_d, email,dirreccion_d, password_d,id_especialidades ) VALUES($1,$2,$3,$4,$5,$6)',[nombre_d,apellidos_d, email,dirreccion_d, password_d,id_especialidades]);
    console.log(response);
     res.json({
         message:'¡El doctor se ha creado satisfactoriamente!',
         body:{
-            doctor: {nombre_d,apellidos_d, email,dirreccion_d, contraseña_d,id_especialidades}
+            doctor: {nombre_d,apellidos_d, email,dirreccion_d, password_d,id_especialidades}
         }
     })
 };
@@ -40,15 +41,15 @@ const updateDoctor = async(req, res) => {
         apellidos_d, 
         email,
         dirreccion_d, 
-        contraseña_d,
+        password_d,
         id_especialidades
     }=req.body;
-    const response = await pool.query('UPDATE doctor SET nombre_d = $1, apellidos_d = $2, email=$3,dirreccion_d = $4, contraseña_d = $5,id_especialidades=$6 WHERE id_doctor = $7',[
+    const response = await pool.query('UPDATE doctor SET nombre_d = $1, apellidos_d = $2, email=$3,dirreccion_d = $4, password_d = $5,id_especialidades=$6 WHERE id_doctor = $7',[
         nombre_d,
         apellidos_d, 
         email,
         dirreccion_d, 
-        contraseña_d,
+        password_d,
         id_especialidades,
         id
     ]) 
