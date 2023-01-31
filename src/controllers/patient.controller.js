@@ -29,7 +29,8 @@ const createPatient = async(req, res) => {
         id_alergias,
         id_discapacidades
     }=req.body;
-   const response= await pool.query('INSERT INTO pacientes (nombre_paciente,apellido_paciente, direccion_paciente,telefono_paciente, email_paciente,tlf_familiar_paciente,fecha_nacimiento_paciente,genero_paciente,id_alergias,id_discapacidades) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)',[nombre_paciente,
+   const response= await pool.query('INSERT INTO pacientes (nombre_paciente,apellido_paciente, direccion_paciente,telefono_paciente, email_paciente,tlf_familiar_paciente,fecha_nacimiento_paciente,genero_paciente,id_alergias,id_discapacidades) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)',[
+    nombre_paciente,
     apellido_paciente, 
     direccion_paciente,
     telefono_paciente, 
@@ -43,7 +44,8 @@ const createPatient = async(req, res) => {
     res.json({
         message:'¡El paciente se ha creado satisfactoriamente!',
         body:{
-            pacientes: {nombre_paciente,
+            pacientes: {
+                nombre_paciente,
                 apellido_paciente, 
                 direccion_paciente,
                 telefono_paciente, 
@@ -52,7 +54,8 @@ const createPatient = async(req, res) => {
                 fecha_nacimiento_paciente,
                 genero_paciente,
                 id_alergias,
-                id_discapacidades}
+                id_discapacidades
+            }
         }
     })
 };
@@ -71,7 +74,7 @@ const updatePatient = async(req, res) => {
         id_discapacidades
     }=req.body;
     const response = await pool.query('UPDATE pacientes SET  nombre_paciente= $1, apellido_paciente = $2, direccion_paciente=$3, telefono_paciente = $4, email_paciente = $5, tlf_familiar_paciente=$6, fecha_nacimiento_paciente=$7, genero_paciente =$8, id_alergias= $9, id_discapacidades= $10  WHERE id_paciente = $11',[
-       nombre_paciente,
+        nombre_paciente,
         apellido_paciente, 
         direccion_paciente,
         telefono_paciente, 
