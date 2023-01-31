@@ -12,6 +12,10 @@ const {getAllergies,getAllergiesById,createAllergies,updateAllergies,deleteAller
 
 const {getSpecialities, getSpecialitiesById, createSpeciality, updateSpeciality, deleteSpeciality}=require('../controllers/speciality.controller');
 
+const {getMedicalApointment,getMedicalApointmentById, createMedicalApointment, updateMedicalApointment,deleteMedicalApointment}=require('../controllers/medical_apointment.controller');
+
+const {getMedicalAssignment,getMedicalAssignmentById,createMedicalAssignment,updateMedicalAssignment,deleteMedicalAssignment}=require('../controllers/medical_assignment.controller');
+
 //Discapacidades listar
 router.get('/api/disabilities', getDisability);
 router.get('/api/disabilities/:id', getDisabilityById);
@@ -28,10 +32,17 @@ router.get('/api/doctors/:id', getDoctorsById);
 router.get('/api/patients',getPatient);
 router.get('/api/patients/:id', getPatientById);
 
-
 //Alergias listar
 router.get('/api/allergies',getAllergies);
 router.get('/api/allergies/:id',getAllergiesById);
+
+//Citas medicas listar
+router.get('/api/medical-apointments',getMedicalApointment);
+router.get('/api/medical-apointments/:id',getMedicalApointmentById);
+
+//Asignacion Medica listar
+router.get('/api/medical-assignments',getMedicalAssignment);
+router.get('/api/medical-assignments/:id',getMedicalAssignmentById);
 
 //Crear
 router.post('/api/disabilities', createDisability);
@@ -39,6 +50,8 @@ router.post('/api/doctors', createDoctor);
 router.post('/api/patients',createPatient);
 router.post('/api/allergies',createAllergies);
 router.post('/api/specialities',createSpeciality);
+router.post('/api/medical-apointments',createMedicalApointment);
+router.post('/api/medical-assignments',createMedicalAssignment);
 
 //update
 router.put('/api/disabilities/:id',updateDisability);
@@ -46,6 +59,8 @@ router.put('/api/doctors/:id',updateDoctor);
 router.put('/api/patients/:id',updatePatient);
 router.put('/api/allergies/:id',updateAllergies);
 router.put('/api/specialities/:id',updateSpeciality);
+router.put('/api/medical-apointments/:id',updateMedicalApointment);
+router.put('/api/medical-assignments/:id',updateMedicalAssignment); 
 
 //delete
 router.delete('/api/disabilities/:id', deleteDisability);
@@ -53,5 +68,7 @@ router.delete('/api/doctors/:id', deleteDoctor);
 router.delete('/api/patients/:id', deletePatient);
 router.delete('/api/allergies/:id', deleteAllergies);
 router.delete('/api/specialities/:id', deleteSpeciality);
+router.delete('/api/medical-apointments/:id',deleteMedicalApointment);
+router.delete('/api/medical-assignments/:id',deleteMedicalAssignment);
 
 module.exports = router;
