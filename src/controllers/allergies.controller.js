@@ -17,7 +17,6 @@ const getAllergiesById = async(req, res) => {
     const response =await pool.query('SELECT * FROM alergias WHERE id_alergia = $1',[id]);
     res.json(response.rows);
 };
-
 const createAllergies= async(req, res) => {
     const { nombre_alergia,descripcion_alergia}=req.body;
    const response= await pool.query('INSERT INTO alergias (nombre_alergia,descripcion_alergia) VALUES($1,$2)',[ nombre_alergia, descripcion_alergia]);
