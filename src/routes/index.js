@@ -14,7 +14,7 @@ const {getSpecialities, getSpecialitiesById, createSpeciality, updateSpeciality,
 
 const {getMedicalApointment,getMedicalApointmentById, createMedicalApointment, updateMedicalApointment,deleteMedicalApointment}=require('../controllers/medical_apointment.controller');
 
-const {getMedicalAssignment,getMedicalAssignmentById,createMedicalAssignment,updateMedicalAssignment,deleteMedicalAssignment}=require('../controllers/medical_assignment.controller');
+const {getMedicalAssignment,getMedicalAssignmentByMedicalApointmentId,getMedicalAssignmentById,createMedicalAssignment,updateMedicalAssignment,deleteMedicalAssignment}=require('../controllers/medical_assignment.controller');
 
 const {getConsultingRoom, getConsultingRoomById, createConsultingRoom, updateConsultingRoom, deleteConsultingRoom}=require('../controllers/consulting_room.controller');
 
@@ -45,6 +45,7 @@ router.get('/api/medical-apointments/:id',getMedicalApointmentById);
 //Asignacion Medica listar
 router.get('/api/medical-assignments',getMedicalAssignment);
 router.get('/api/medical-assignments/:id',getMedicalAssignmentById);
+router.get('/api/medical-assignmentsby/:id',getMedicalAssignmentByMedicalApointmentId);
 
 //Consultorios listar
 router.get('/api/consulting-rooms',getConsultingRoom);

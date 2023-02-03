@@ -16,6 +16,11 @@ const getMedicalAssignmentById = async(req, res) => {
     const response =await pool.query('SELECT * FROM asignacionCitaMedica WHERE id_asignacion_cita_medica = $1',[id]);
     res.json(response.rows);
 };
+const getMedicalAssignmentByMedicalApointmentId = async(req, res) => {
+    const id=req.params.id;
+    const response =await pool.query('select * from asignacioncitamedica where id_cita_medica = $1',[id]);
+    res.json(response.rows);
+};
 const createMedicalAssignment = async(req, res) => {
     const {
         id_cita_medica,
@@ -61,5 +66,6 @@ module.exports = {
     getMedicalAssignmentById,
     createMedicalAssignment,
     updateMedicalAssignment,
-    deleteMedicalAssignment
+    deleteMedicalAssignment,
+    getMedicalAssignmentByMedicalApointmentId
 }
