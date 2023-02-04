@@ -76,7 +76,8 @@ const updatePatient = async(req, res) => {
         id_alergias,
         id_discapacidades
     }=req.body;
-    const response = await pool.query('UPDATE pacientes SET  nombre_paciente= $1, apellido_paciente = $2, direccion_paciente=$3, telefono_paciente = $4, email_paciente = $5,password_paciente =$6 tlf_familiar_paciente=$7, fecha_nacimiento_paciente=$8, genero_paciente =$9, id_alergias= $10, id_discapacidades= $11  WHERE id_paciente = $12',[
+    console.log(req.body);
+    const response = await pool.query('UPDATE pacientes SET  nombre_paciente= $1, apellido_paciente = $2, direccion_paciente=$3, telefono_paciente = $4, email_paciente = $5,password_paciente =$6 ,tlf_familiar_paciente=$7, fecha_nacimiento_paciente=$8, genero_paciente =$9, id_alergias= $10, id_discapacidades= $11  WHERE id_paciente = $12',[
        nombre_paciente,
         apellido_paciente, 
         direccion_paciente,
