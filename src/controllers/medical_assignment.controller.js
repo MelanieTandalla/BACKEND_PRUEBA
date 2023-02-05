@@ -47,7 +47,7 @@ const updateMedicalAssignment = async(req, res) => {
         id_cita_medica,
         id_consultorio
     }=req.body;
-    const response = await pool.query('UPDATE asignacionCitaMedica SET id_cita_medica=$1,id_consultorio =$2 WHERE id_asignacion_cita_medica = $3',[
+    const response = await pool.query('UPDATE asignacionCitaMedica SET id_cita_medica=$1,id_consultorio =$2 WHERE id_asignacion_medica = $3',[
         id_cita_medica,
 	    id_consultorio,
         id
@@ -57,7 +57,7 @@ const updateMedicalAssignment = async(req, res) => {
 };
 const deleteMedicalAssignment = async(req, res) => {
     const id=req.params.id;
-    const response = await pool.query('DELETE FROM cita_medica WHERE id_asignacion_cita_medica = $1',[id]);
+    const response = await pool.query('DELETE FROM cita_medica WHERE id_asignacion_medica = $1',[id]);
     res.json(`Asignacion medica con id: ${id} eliminada correctamente`);
 };
 
