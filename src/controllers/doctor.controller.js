@@ -7,7 +7,7 @@ const pool=new Pool({
     port:5432,
 })
 const getDoctors = async(req, res) => {
-    const response=await pool.query('SELECT * FROM doctor');
+    const response=await pool.query('SELECT doctor.id_doctor,doctor.nombre_d,doctor.apellidos_d,doctor.email,doctor.dirreccion_d,doctor.password_d,doctor.id_especialidades,especialidades.descripcion_especialidad as especialidades from doctor inner join especialidades on especialidades.id_especialidad = doctor.id_especialidades');
     console.log(response.rows);
     res.status(200).json(response.rows);
 };
