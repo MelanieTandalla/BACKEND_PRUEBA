@@ -17,6 +17,8 @@ const {getMedicalAssignment,getMedicalAssignmentByMedicalApointmentId,getMedical
 
 const {getConsultingRoom, getConsultingRoomById, createConsultingRoom, updateConsultingRoom, deleteConsultingRoom}=require('../controllers/consulting_room.controller');
 
+const {getAdmin, getAdminById, createAdmin, updateAdmin, deleteAdmin}=require('../controllers/admin.controller');
+
 const {getHorario, getHorarioById, createHorario, updateHorario, deleteHorario}=require('../controllers/horario.controller');
 
 //Discapacidades listar
@@ -52,6 +54,13 @@ router.get('/api/medical-assignmentsby/:id',getMedicalAssignmentByMedicalApointm
 router.get('/api/consulting-rooms',getConsultingRoom);
 router.get('/api/consulting-rooms/:id',getConsultingRoomById);
 
+//Horarios listar
+//router.get('/api/schedules',getSchedules);
+//router.get('/api/schedules/:id',getScheduleById);
+
+//Administrador listar
+router.get('/api/adminstrators',getAdmin);
+router.get('/api/adminstrators/:id',getAdminById);
 //horario
 router.get('/api/horario',getHorario);
 router.get('/api/horario/:id',getHorarioById);
@@ -65,6 +74,7 @@ router.post('/api/specialities',createSpeciality);
 router.post('/api/medical-apointments',createMedicalApointment);
 router.post('/api/medical-assignments',createMedicalAssignment);
 router.post('/api/consulting-rooms',createConsultingRoom);
+router.post('/api/adminstrators',createAdmin);
 router.post('/api/horario',createHorario);
 
 //update
@@ -77,6 +87,7 @@ router.put('/api/medical-apointments/:id',updateMedicalApointment);
 router.put('/api/medical-assignments/:id',updateMedicalAssignment); 
 router.put('/api/consulting-rooms/:id',updateConsultingRoom);
 router.put('/api/horario/:id',updateHorario);
+router.put('/api/adminstrators/:id',updateAdmin);
 
 //delete
 router.delete('/api/disabilities/:id', deleteDisability);
@@ -87,6 +98,7 @@ router.delete('/api/specialities/:id', deleteSpeciality);
 router.delete('/api/medical-apointments/:id',deleteMedicalApointment);
 router.delete('/api/medical-assignments/:id',deleteMedicalAssignment);
 router.delete('/api/consulting-rooms/:id',deleteConsultingRoom);
+router.delete('/api/adminstrators/:id',deleteAdmin);
 router.delete('/api/horario/:id',deleteHorario);
 
 module.exports = router;
