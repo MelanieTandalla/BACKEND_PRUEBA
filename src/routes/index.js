@@ -1,8 +1,7 @@
 const {Router} = require('express');
 const router = Router();
 
-const { getDisability,getDisabilityById,createDisability, deleteDisability,
-updateDisability} = require('../controllers/disability.controller');
+const {getDisability, getDisabilityById, createDisability, deleteDisability, updateDisability} = require('../controllers/disability.controller');
 
 const {getDoctors, getDoctorsById, deleteDoctor, createDoctor, updateDoctor}= require('../controllers/doctor.controller');
 
@@ -20,7 +19,7 @@ const {getConsultingRoom, getConsultingRoomById, createConsultingRoom, updateCon
 
 const {getAdmin, getAdminById, createAdmin, updateAdmin, deleteAdmin}=require('../controllers/admin.controller');
 
-//const {getSchedules, getScheduleById, createSchedule, updateSchedule, deleteSchedule}= require('../controllers/schedule.controller');
+const {getHorario, getHorarioById, createHorario, updateHorario, deleteHorario}=require('../controllers/horario.controller');
 
 //Discapacidades listar
 router.get('/api/disabilities', getDisability);
@@ -62,6 +61,9 @@ router.get('/api/consulting-rooms/:id',getConsultingRoomById);
 //Administrador listar
 router.get('/api/adminstrators',getAdmin);
 router.get('/api/adminstrators/:id',getAdminById);
+//horario
+router.get('/api/horario',getHorario);
+router.get('/api/horario/:id',getHorarioById);
 
 //Crear
 router.post('/api/disabilities', createDisability);
@@ -72,8 +74,8 @@ router.post('/api/specialities',createSpeciality);
 router.post('/api/medical-apointments',createMedicalApointment);
 router.post('/api/medical-assignments',createMedicalAssignment);
 router.post('/api/consulting-rooms',createConsultingRoom);
-//router.post('/api/schedules',createSchedule);
 router.post('/api/adminstrators',createAdmin);
+router.post('/api/horario',createHorario);
 
 //update
 router.put('/api/disabilities/:id',updateDisability);
@@ -84,7 +86,7 @@ router.put('/api/specialities/:id',updateSpeciality);
 router.put('/api/medical-apointments/:id',updateMedicalApointment);
 router.put('/api/medical-assignments/:id',updateMedicalAssignment); 
 router.put('/api/consulting-rooms/:id',updateConsultingRoom);
-//router.put('/api/schedules/:id',updateSchedule);
+router.put('/api/horario/:id',updateHorario);
 router.put('/api/adminstrators/:id',updateAdmin);
 
 //delete
@@ -96,7 +98,7 @@ router.delete('/api/specialities/:id', deleteSpeciality);
 router.delete('/api/medical-apointments/:id',deleteMedicalApointment);
 router.delete('/api/medical-assignments/:id',deleteMedicalAssignment);
 router.delete('/api/consulting-rooms/:id',deleteConsultingRoom);
-//router.delete('/api/schedules/:id',deleteSchedule);
 router.delete('/api/adminstrators/:id',deleteAdmin);
+router.delete('/api/horario/:id',deleteHorario);
 
 module.exports = router;
