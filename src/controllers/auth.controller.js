@@ -20,7 +20,11 @@ const login = async(req, res) => {
         res.status(200).json(response.rows);
     }else {
         const response= await pool.query('select * from administrador where email_admin = $1 and password_admin = $2',[ email,password]);
-        res.status(200).json(response.rows);
+        if (response.rows.length > 0) {
+            res.status(200).json(response.rows);
+        } else {
+            throw new Error('No existe el usuario')
+        }
     }
    }
     
