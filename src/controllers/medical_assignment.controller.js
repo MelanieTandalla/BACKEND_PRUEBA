@@ -7,7 +7,7 @@ const pool=new Pool({
     port:5432,
 })
 const getMedicalAssignment = async(req, res) => {
-    const response=await pool.query('SELECT * FROM asignacionCitaMedica');
+    const response=await pool.query('select asignacioncitamedica.id_asignacion_medica,asignacioncitamedica.id_cita_medica,asignacioncitamedica.id_consultorio,cita_medica.fecha_asignada,horario.descripcion as horario, consultorio.nombre_consultorio as id_consultoriol,pacientes.nombre_paciente as nombre_paciente,pacientes.apellido_paciente as apellido_paciente,doctor.nombre_d as nombre_doctor, doctor.apellidos_d as apellido_doctor from asignacioncitamedica inner join consultorio on consultorio.id_consultorio = asignacioncitamedica.id_consultorio inner join cita_medica on cita_medica.id_cita_medica = asignacioncitamedica.id_cita_medica inner join horario on horario.id_horario = cita_medica.id_horario inner join pacientes on pacientes.id_paciente = cita_medica.id_paciente inner join doctor on doctor.id_doctor = cita_medica.id_doctor');
     console.log(response.rows);
     res.status(200).json(response.rows);
 };
