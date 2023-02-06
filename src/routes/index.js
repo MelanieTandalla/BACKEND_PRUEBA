@@ -21,6 +21,8 @@ const {getAdmin, getAdminById, createAdmin, updateAdmin, deleteAdmin}=require('.
 
 const {getHorario, getHorarioById, createHorario, updateHorario, deleteHorario}=require('../controllers/horario.controller');
 
+const {login}=require('../controllers/auth.controller');
+
 //Discapacidades listar
 router.get('/api/disabilities', getDisability);
 router.get('/api/disabilities/:id', getDisabilityById);
@@ -64,6 +66,9 @@ router.get('/api/adminstrators/:id',getAdminById);
 //horario
 router.get('/api/horario',getHorario);
 router.get('/api/horario/:id',getHorarioById);
+
+//login
+router.post('/api/login',login)
 
 //Crear
 router.post('/api/disabilities', createDisability);
