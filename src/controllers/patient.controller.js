@@ -13,7 +13,7 @@ const getPatient = async(req, res) => {
 };
 const getPatientById = async(req, res) => {
     const id=req.params.id;
-    const response =await pool.query('SELECT * FROM pacientes WHERE id_paciente = $1',[id]);
+    const response =await pool.query('SELECT pacientes.id_paciente,pacientes.nombre_paciente,pacientes.apellido_paciente,pacientes.direccion_paciente,pacientes.telefono_paciente,pacientes.email_paciente,pacientes.password_paciente,pacientes.tlf_familiar_paciente,pacientes.fecha_nacimiento_paciente,pacientes.genero_paciente,pacientes.id_alergias,alergias.nombre_alergia as alergia_nombre ,pacientes.id_discapacidades,discapacidades.nombre_discapacidad as discapacidad_nombre from pacientes inner join alergias on alergias.id_alergia = pacientes.id_alergias inner  join discapacidades on discapacidades.id_discapacidades =pacientes.id_discapacidades  WHERE id_paciente = $1',[id]);
     res.json(response.rows);
 };
 const createPatient = async(req, res) => {
@@ -30,7 +30,8 @@ const createPatient = async(req, res) => {
         id_alergias,
         id_discapacidades
     }=req.body;
-   const response= await pool.query('INSERT INTO pacientes (nombre_paciente,apellido_paciente, direccion_paciente,telefono_paciente, email_paciente,password_paciente,tlf_familiar_paciente,fecha_nacimiento_paciente,genero_paciente,id_alergias,id_discapacidades) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)',[nombre_paciente,
+   const response= await pool.query('INSERT INTO pacientes (nombre_paciente,apellido_paciente, direccion_paciente,telefono_paciente, email_paciente,password_paciente,tlf_familiar_paciente,fecha_nacimiento_paciente,genero_paciente,id_alergias,id_discapacidades) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)',[
+    nombre_paciente,
     apellido_paciente, 
     direccion_paciente,
     telefono_paciente, 
